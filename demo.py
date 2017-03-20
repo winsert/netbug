@@ -5,4 +5,7 @@ response = urllib2.urlopen(request)
 
 print response.read()
 
-print type()
+<<<<<<< HEAD
+=======
+print type(response)
+>>>>>>> dev
