@@ -1,14 +1,21 @@
-import urllib2
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
 
-enable_proxy = True
+import re, requests
 
-proxy_handler = urllib2.ProxyHandler({"http":"http://some-proxy.com:8080"})
+import sys
+reload(sys)
+sys.setdefaultencoding( "utf-8" )
 
-null_proxy_handler = urllib2.ProxyHandler({})
+iplist = []
 
-if enable_proxy:
-    opener = urllib2.build_opener(proxy_handler)
-else:
-    opener = urllib2.build_opener(null_proxy_handler)
+html = requests.get("http://haoip.cc/tiqu.htm")
 
-urllib2.install_opener(opener)
+iplistn = re.findall(r'r/>(.*?)<b', html.text, re.S) #从html.text中获取所有r/><b的内容，re.S的意思是包括匹配包括换行符，findall返回的是个list
+
+for ip in iplistn:
+    i = re.sub('\n', '', ip) ##re.sub 是re模块替换的方法，这儿表示将\n替换为空
+    iplist.append(i.strip()) 
+    print i.strip()
+
+print iplist
