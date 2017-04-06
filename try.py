@@ -6,6 +6,7 @@ try:
     urllib2.urlopen(req)
 except urllib2.URLError, e:
     if hasattr(e, "reason"):
+        print e.code
         print e.reason
 else:
     print "OK"
