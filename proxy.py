@@ -23,11 +23,12 @@ else:
     j = 0 #用于统计获得proxy地址的数量
     for ip in iplistn:
         i = re.sub('\n', '', ip) ##re.sub 是re模块替换的方法，这儿表示将\n替换为空
-        iplist.append(i.strip()) 
-        fp.write(i.strip())
+        iplist.append(i.strip().decode('utf-8')) 
+        fp.write(i.strip().decode('utf-8'))
         fp.write('\n')
         j += 1
         print j, '\t', i.strip()
+        print type(i.strip())
 
 print "共获得 %r 个proxy地址。" % j
 fp.close()
