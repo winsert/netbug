@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
+## 输入url，解析生成soup.txt
 
 import requests, random, lxml
 
@@ -57,7 +58,12 @@ class request:
 if __name__ == '__main__':
     
     input_url = raw_input('请输入URL地址：')
-    url  = "http://"+input_url
+
+    if input_url[0:4] == 'http':
+        url = input_url
+    else:
+        url  = "http://"+input_url
+
     print url
 
     req = request() #实例化
