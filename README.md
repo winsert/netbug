@@ -46,10 +46,7 @@ soup.py             用于对request.py生成的soup.txt进行解析,find
 
 m.py                临时修改文件
 
-temp_weibo  存放有关weibo开发的临时文件
+weibo  存放有关weibo开发的文件
 
-weibo_auto.py       #无需获取code,自动登录，发布文本，图片   
-weibo_auto_null.py  #无个人信息版本
-
-weibo_hand.py       #手工获取code,发布文本，图片
-weibo_hand_null.py  #无个人信息版本
+xmly.py     实现从www.ximalaya.com(单页)下载音频文件
+ximalalya.py    实现从www.ximalaya.com(单页或多页)下载音频文件
