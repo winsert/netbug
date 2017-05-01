@@ -48,5 +48,8 @@ m.py                临时修改文件
 
 weibo  存放有关weibo开发的文件
 
-xmly.py     实现从www.ximalaya.com(单页)下载音频文件
-ximalalya.py    实现从www.ximalaya.com(单页或多页)下载音频文件
+ximalalya    有关实现从www.ximalaya.com下载音频文件的程序
+
+gushequ 用于从gushequ.com下载内容
+
+mzitu   用于从mzitu.com下载图片
