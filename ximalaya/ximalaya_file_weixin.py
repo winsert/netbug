@@ -10,6 +10,10 @@ import urllib2
 import json, os, re
 import itchat
 
+import sys
+reload(sys)
+sys.setdefaultencoding( "utf-8" )
+
 # 用于解析URL页面
 def bsObjForm(url):
     headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) ' 'Chrome/51.0.2704.63 Safari/537.36'}
@@ -84,8 +88,10 @@ def getAlbumInfo(url, page):
         print "专辑名称：", msg
         print "本专辑共%r个音频文件已全部下载完成。" % ids_len
         print
+        wx_msg = msg+"：已下载完成。"
+        itchat.send(wx_msg, toUserName='filehelper')
     else: #如果有多个页面
-        print "本页共有%r个音频文件。" % ids_len
+        print "第%r页共有%r个音频文件。" % (page, ids_len)
         i = 0
         for i in range(0, 2):
         #for i in range(0, ids_len):
@@ -93,16 +99,20 @@ def getAlbumInfo(url, page):
             #print "SoundID:", soundId
             path_url='http://www.ximalaya.com/tracks/'+soundId+'.json'
             #print path_url
-            getM4a(path_url, page+'-'+str(i+1)) #传递记录有音频下载地址的json页面和下载的序列数
+            msg = getM4a(path_url, page+'-'+str(i+1)) #传递记录有音频下载地址的json页面和下载的序列数
 
-        print '\n'+'本页共%r个音频文件已全部下载完成。' % ids_len
         print
+        print "专辑名称：", msg
+        print "第%r页共%r个音频文件已全部下载完成。" %(page, ids_len)
+        print
+        wx_msg = msg+"的第"+str(page)+"页：已下载完成。"
+        itchat.send(wx_msg, toUserName='filehelper')
 
 # 确定专辑的页数。
 def getAlbumPages(url):
     pages_resp = bsObjForm(url)
     try:
-        temp_list = pages_resp.find('div', class_="pagingBar"    ).find('div', class_="pagingBar_wrapper").find_all('a')
+        temp_list = pages_resp.find('div', class_="pagingBar").find('div', class_="pagingBar_wrapper").find_all('a')
         pages_list = []
         for h in temp_list:
             pages_list.append(h.get_text())
@@ -138,5 +148,5 @@ def getAlbumUrl():
 
 if __name__ == '__main__':
     
-    #itchat.auto_login(hotReload=True)
+    itchat.auto_login(hotReload=True)
     getAlbumUrl()
