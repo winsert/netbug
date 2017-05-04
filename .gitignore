@@ -1,0 +1,13 @@
+.DS_Store
+.AppleDouble/
+
+*.csv
+*.txt
+*.jpg
+m.py
+re.py
+rq.py
+
+weibo_auto.py
+weibo_hand.py
+weibo/temp_weibo
