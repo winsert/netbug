@@ -53,3 +53,5 @@ ximalalya    有关实现从www.ximalaya.com下载音频文件的程序
 gushequ 用于从gushequ.com下载内容
 
 mzitu   用于从mzitu.com下载图片
+
+eb      用于查询可转债价格
