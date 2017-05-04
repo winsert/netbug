@@ -21,7 +21,8 @@ def getEBprice(key_value, EB_name, EB_price):
     if EB_price <= key_value:
         msg = EB_name+u"的进货价是："+str(key_value)+u"，最新价是："+str(EB_price)
         #print msg
-        itchat.auto_login(hotReload=True)
+        #itchat.auto_login(hotReload=True)
+        itchat.auto_login(enableCmdQR=2)
         itchat.send(msg, toUserName='filehelper')
 
 # 获取可转债的价格
