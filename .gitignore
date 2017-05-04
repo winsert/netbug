@@ -8,6 +8,8 @@ m.py
 re.py
 rq.py
 
+itchat.pkl
+
 weibo_auto.py
 weibo_hand.py
 weibo/temp_weibo
