@@ -60,7 +60,7 @@ def getTodayWeather(url):
 # 发送微信
 def sendWeixin(today_weather, history_weather):
 
-    msg = today_weather+'\n'+history_weather
+    msg = today_weather+'\n'+history_weather+'\n'+u"数据来源：weather.sina.com.cn"
     print msg
 
     #itchat.auto_login(hotReload=True)

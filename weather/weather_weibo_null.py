@@ -67,7 +67,7 @@ def sendWeibo(today_weather, history_weather):
 
     api = Client(APP_KEY, APP_SECRET, '', username=USER_NAME, password=USER_PASSWORD)
 
-    text = today_weather+'\n'+history_weather
+    text = today_weather+'\n'+history_weather+'\n'+u"数据来源：weather.sina.com.cn"
     print text
 
     # update用于发布文本
