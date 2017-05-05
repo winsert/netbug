@@ -54,6 +54,7 @@ def getTodayWeather(url):
 if __name__ == '__main__':
     
     today_url = "http://php.weather.sina.com.cn/xml.php?city=%BC%C3%C4%CF&password=DJOYnieT8234jlsK&day=0"
+    #day_url = "http://php.weather.sina.com.cn/xml.php?city=%BC%C3%C4%CF&password=DJOYnieT8234jlsK&day=1" # day=0，表示当天天气，1表示第二天天气，以此类推，最大取值为4。
     getTodayWeather(today_url)
 
     today = datetime.date.today()
