@@ -65,11 +65,14 @@ def sendWeixin(today_weather, history_weather):
 
     #itchat.auto_login(hotReload=True)
     itchat.auto_login(enableCmdQR=2)
-    #itchat.send(msg, toUserName='filehelper')
-    #itchat.send(msg, toUserName='wxid_ilriiifjfc5a21')
-    itchat.send(msg, toUserName='wxid_cycnmilghn3y11')
+    friendlist = itchat.get_friends(update=True)
 
-    print u"微博发送成功！"
+    for friend in friendlist:
+        if friend['NickName'] == u'KEN':
+            itchat.send(msg, friend['UserName'])
+            print u'已发送微信给：'+friend['NickName']
+
+    itchat.send(msg, 'filehelper')
 
 if __name__ == '__main__':
     
