@@ -9,7 +9,8 @@ re.py
 rq.py
 
 itchat.pkl
-
-weibo_auto.py
+weather/request.py
+weather/soup.py
+weather/weather_weibo.py
 weibo_hand.py
 weibo/temp_weibo
