@@ -9,6 +9,7 @@ import urllib2
 import datetime
 from bs4 import BeautifulSoup
 
+
 # 用于解析URL页面
 def bsObjForm(url):
     headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) ' 'Chrome/51.0.2704.63 Safari/537.36'}
@@ -37,28 +38,34 @@ def getHistoryWeather(url, month_day):
             av_low = day_list[3]
             his_high = day_list[5]
             his_low = day_list[6]
-            print u"历史上今日平均最高温度："+av_high+u"度，平均最低温度："+av_low+u"度，极端最高温度："+his_high+u"度，极端最低温度："+his_low+u"度。"
+            history_weather = u'历史上今日：'+u'\n平均最高温度：'+str(av_high)+u'度'+u'\n平均最低温度：'+str(av_low)+u'度'+u'\n极端最高温度：'+str(his_high)+u'度'+u'\n极端最低温度：'+str(his_low)+u'度'
+    return history_weather
 
 # 获取今日天气信息
 def getTodayWeather(url):
     resp = bsObjForm(url)
-    soup = BeautifulSoup(resp, "html.parser")
-    status = soup.status1.string
-    #wind_direction = soup.direction1.string
-    #wind_power = soup.power1.string
-    temp1 = soup.temperature1.string
-    temp2 = soup.temperature2.string
-    today_weather = u"今日："+status+u"  气温："+temp1+"-"+temp2
-    print today_weather
+    soup = BeautifulSoup(resp, 'lxml')
+    temp = soup.find('div', class_="tqshow").find('span').get_text()
+    status = soup.find('li',class_="cDRed").get_text()
+    wind = soup.find('li', style="height:18px;overflow:hidden").get_text()
+    today_weather = u'今日：'+status+u'，气温：'+temp+u'，'+wind
+    #print today_weather
+    return today_weather
 
-if __name__ == '__main__':
-    
-    today_url = "http://php.weather.sina.com.cn/xml.php?city=%BC%C3%C4%CF&password=DJOYnieT8234jlsK&day=0"
-    #day_url = "http://php.weather.sina.com.cn/xml.php?city=%BC%C3%C4%CF&password=DJOYnieT8234jlsK&day=1" # day=0，表示当天天气，1表示第二天天气，以此类推，最大取值为4。
-    getTodayWeather(today_url)
+def getToday():
+    today_url = "http://jinan.tianqi.com"
+    today_weather_msg = getTodayWeather(today_url)
+    #print today_weather_msg
 
     today = datetime.date.today()
     month_day = str(today.month)+str(today.day)
     history_url = "http://php.weather.sina.com.cn/whd.php?c=1&city=%BC%C3%C4%CF&dpc=1"
-    getHistoryWeather(history_url, month_day)
-    
+    history_weather_msg = getHistoryWeather(history_url, month_day)
+    #print history_weather_msg
+        
+    print today_weather_msg+u'\n'+history_weather_msg
+    return today_weather_msg+u'\n'+history_weather_msg
+
+if __name__ == '__main__':
+
+    getToday()
