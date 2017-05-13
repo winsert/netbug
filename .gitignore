@@ -14,3 +14,4 @@ weather/soup.py
 weather/weather_weibo.py
 weibo_hand.py
 weibo/temp_weibo
+weibo/weibo_auto.py
