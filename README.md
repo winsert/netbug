@@ -39,6 +39,8 @@ re.py               学习re模块做正则式解析
 
 try.py              学习用try排队错误
 
+tw.py				尝试tinyWebDB的POST
+
 repuest.py  soup.txt
 将requests后的url再BeautifulSoup，并保存到soup.txt
 
